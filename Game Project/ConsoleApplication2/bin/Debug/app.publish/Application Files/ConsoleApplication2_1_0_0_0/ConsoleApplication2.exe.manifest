@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="ConsoleApplication2.exe" version="1.0.0.0" publicKeyToken="6088d447d070edd3" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ConsoleApplication2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ConsoleApplication2.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ConsoleApplication2.exe" size="31744">
+      <assemblyIdentity name="ConsoleApplication2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>usywCBAmjaYT7hIMur+SHjelnIjFfZHzrETjJc1/+Hs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="ConsoleApplication2.exe.config" size="187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=CONNOR-PC\Neil" issuerKeyHash="4a4534a46be0f21818b1a40d7565768aca4a0505" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>audR+Js9bY9Clsg3vWnWJlY9yMZLmTdacCIzD/6fueE=</DigestValue></Reference></SignedInfo><SignatureValue>mRctiSNZ+wuN032vQJyVzTpNUNirT4Ps3n0+tADQHJW679Yc6Cpc3dLufAh02FVylJwP7/uaw7DRbD/1sHOxlSj9wLRjJmV+HOiu4vWyZRWoZcuGcOMIzgewRRAl0y1JXLF+EQGlVNHWvPc3H5NiRcvdhnhKsYBNxk0RQsk/N/Y=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>pznvhu4W1qC8E1/hVIRsQobLQhU5rT6HWJUCcxiJp+YYauhcjGTVx/rYKJkhNwlqndhjZQVLnuvt7upjo3Ytt9Zgn4EUTcQOkgpe6xlMeDI8PtAdyC06eL3kKlrIZCoC0PMO52kjf8ydROPP9vUFXevL1gmnVZmjbfaVooM0ukE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="e1b99ffe0f3322705a37994bc6c83d5626d669bd37c896428f6d3d9bf851e76a" Description="" Url=""><as:assemblyIdentity name="ConsoleApplication2.exe" version="1.0.0.0" publicKeyToken="6088d447d070edd3" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=CONNOR-PC\Neil</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>qDb4/Xgm4osMvhl0POLmmsFgK3dad8mnYVzjBoINayw=</DigestValue></Reference></SignedInfo><SignatureValue>Keu/sb0kEfW+0xaCNRQFh6oYgxRmMk7SnxFqfYhNbbh0+VHvD7jV9ZPGr1D8fjwn2LI9UuAk92ACX86vjSuxEmJdpRvf2EdD+wtuPZSs5pFQUQNGX6lYEuqc/ZErkD8lMJQMfzQsrTVmB6hz6gNQLsKOQzG8IbDnEqjAZHQkt3E=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>pznvhu4W1qC8E1/hVIRsQobLQhU5rT6HWJUCcxiJp+YYauhcjGTVx/rYKJkhNwlqndhjZQVLnuvt7upjo3Ytt9Zgn4EUTcQOkgpe6xlMeDI8PtAdyC06eL3kKlrIZCoC0PMO52kjf8ydROPP9vUFXevL1gmnVZmjbfaVooM0ukE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB0TCCATqgAwIBAgIQX4dweCUBkLdO8mL4nLy12DANBgkqhkiG9w0BAQsFADAnMSUwIwYDVQQDHhwAQwBPAE4ATgBPAFIALQBQAEMAXABOAGUAaQBsMB4XDTE2MDkyODE3MTIyNFoXDTE3MDkyODIzMTIyNFowJzElMCMGA1UEAx4cAEMATwBOAE4ATwBSAC0AUABDAFwATgBlAGkAbDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEApznvhu4W1qC8E1/hVIRsQobLQhU5rT6HWJUCcxiJp+YYauhcjGTVx/rYKJkhNwlqndhjZQVLnuvt7upjo3Ytt9Zgn4EUTcQOkgpe6xlMeDI8PtAdyC06eL3kKlrIZCoC0PMO52kjf8ydROPP9vUFXevL1gmnVZmjbfaVooM0ukECAwEAATANBgkqhkiG9w0BAQsFAAOBgQALc1FZv7DwMkJLxqtWmljcRvWTpLPIMKZdK/zqSyelsa9nX+9bmhrjYpeWIW57gXgFqD8jNtVsV1sCXSOrzD3Rri1e4bF3wLfD1NHpubIlfgy998tfTk11THgo/ZZ3nrVhxBlY/HbumA9tNK45eZw0G56gPyC0B7IesTAgjNXgrA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
