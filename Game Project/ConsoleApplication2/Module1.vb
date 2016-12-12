@@ -1,5 +1,12 @@
 ﻿Module Module1
-
+    Public Money As Integer = 10000
+    Public UserInput As String
+    Public Bet As Integer = 0
+    Public BetString As String = ""
+    Public A As Integer = 0
+    Public NumberGen As New System.Random
+    Public Dealer As Integer = 0
+    Public StoreBet As Integer
     Sub Main()
         Do
             Dim intInput As Integer = 0
@@ -293,14 +300,6 @@
                 Home()
             End If
     End Sub
-    Public Money As Integer = 10000
-    Public UserInput As String
-    Public Bet As Integer = 0
-    Public BetString As String = ""
-    Public A As Integer = 0
-    Public NumberGen As New System.Random
-    Public Dealer As Integer = 0
-    Public StoreBet As Integer
     Sub DoBet()
         Console.Clear()
         Console.WriteLine("==========================")
@@ -346,11 +345,23 @@
     Public Sub Lose()
         If Money <= 0 Then
             Console.Clear()
+            Dim PlayAgainStr As String
             Console.WriteLine("You currently have {0} credits :(", Money)
             Console.WriteLine("You LOSE!")
-            Console.WriteLine("Press enter to quit now. Thanks for playing!")
+            Console.WriteLine("Do you want to play again?")
+            Console.WriteLine("1. Yes")
+            Console.WriteLine("2. No")
+            PlayAgainStr = Console.ReadLine()
+            Select Case PlayAgainStr
+                Case 1
+                    Money = 10000
+                    Main()
+                Case 2
+                    End
+                Case Else
+                    Console.WriteLine("That is not a valid input, try again.")
+            End Select
             Console.ReadLine()
-            Environment.Exit(0)
         End If
     End Sub
     Sub Invalid()
