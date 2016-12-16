@@ -11,16 +11,3 @@ C:\Users\Neil\documents\visual studio 2012\Projects\Game Project\ConsoleApplicat
 C:\Users\Neil\documents\visual studio 2012\Projects\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.application
 C:\Users\Neil\documents\visual studio 2012\Projects\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe.manifest
 C:\Users\Neil\documents\visual studio 2012\Projects\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.application
-E:\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe.config
-E:\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe
-E:\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.xml
-E:\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.pdb
-E:\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe.manifest
-E:\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.application
-E:\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe
-E:\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.pdb
-E:\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.xml
-E:\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.Resources.resources
-E:\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.vbproj.GenerateResource.Cache
-E:\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe.manifest
-E:\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.application

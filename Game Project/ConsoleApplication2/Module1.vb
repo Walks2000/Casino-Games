@@ -7,6 +7,7 @@
     Public NumberGen As New System.Random
     Public Dealer As Integer = 0
     Public StoreBet As Integer
+    Public BadLuckProtectionSlots As Integer = 0
     Sub Main()
         Do
             Dim intInput As Integer = 0
@@ -20,6 +21,7 @@
             Console.WriteLine("2. Dice Roll")
             Console.WriteLine("3. Roulette")
             Console.WriteLine("4. Blackjack")
+            Console.WriteLine("5. Slot Machine")
             Console.WriteLine("You currently have {0} credits!", Money)
             Console.WriteLine("==========================")
             Console.WriteLine("Enter your choice: ")
@@ -39,20 +41,22 @@
                     Case 4
                         Blackjack()
                         Exit Do
+                    Case 5
+                        SlotMachine()
+                        Exit Do
                     Case Else
-                        Console.WriteLine("Please select an option from 1 to 4")
+                        Console.WriteLine("Please select an option from 1 to 5")
                 End Select
             Else
-                Console.WriteLine("Please select an option from 1 to 4")
+                Console.WriteLine("Please select an option from 1 to 5")
             End If
         Loop
 
     End Sub
 
     Sub Coin()
-            DoBet()
-            Console.Clear()
-            Console.WriteLine("What do you want to bet it on, Heads or Tails (enter one of the two now)")
+        Console.Clear()
+        Console.WriteLine("What do you want to bet it on, Heads or Tails (enter one of the two now)")
         BetString = Console.ReadLine
         If BetString = "Heads" Then
         ElseIf BetString = "Tails" Then
@@ -61,41 +65,42 @@
             Coin()
         End If
 
+        DoBet()
+
+        Console.Clear()
+        Console.WriteLine("You have bet {0} credits on {1}, good luck!", Bet, BetString)
+
+        A = NumberGen.Next(1, 3)
+
+        If A = 1 Then
             Console.Clear()
-            Console.WriteLine("You have bet {0} credits on {1}, good luck!", Bet, BetString)
-
-            A = NumberGen.Next(1, 3)
-
-            If A = 1 Then
-                Console.Clear()
-                Console.WriteLine("The coin landed on Heads!")
-                If BetString = "Heads" Then
-                    Bet = Bet + Bet
-                    Money = Bet + Money
-                    Console.WriteLine("Congratulations, you won!")
-                Else
-                    Console.WriteLine("Oh no, you lost! Better luck next time.")
-                End If
+            Console.WriteLine("The coin landed on Heads!")
+            If BetString = "Heads" Then
+                Bet = Bet + Bet
+                Money = Bet + Money
+                Console.WriteLine("Congratulations, you won!")
+            Else
+                Console.WriteLine("Oh no, you lost! Better luck next time.")
             End If
+        End If
 
-            If A = 2 Then
-                Console.Clear()
-                Console.WriteLine("The coin landed on Tails!")
-                If BetString = "Tails" Then
-                    Bet = Bet + Bet
-                    Money = Bet + Money
-                    Console.WriteLine("Congratulations, you won!")
-                Else
-                    Console.WriteLine("Oh no, you lost! Better luck next time.")
-                End If
+        If A = 2 Then
+            Console.Clear()
+            Console.WriteLine("The coin landed on Tails!")
+            If BetString = "Tails" Then
+                Bet = Bet + Bet
+                Money = Bet + Money
+                Console.WriteLine("Congratulations, you won!")
+            Else
+                Console.WriteLine("Oh no, you lost! Better luck next time.")
             End If
-            Home()
+        End If
+        Home()
 
     End Sub
     Sub Dice()
-            DoBet()
-            Console.Clear()
-            Console.WriteLine("What do you want to bet it on, enter any number between 1 and 6 or Odd or Even (Case Sensititive)")
+        Console.Clear()
+        Console.WriteLine("What do you want to bet it on, enter any number between 1 and 6 or Odd or Even (Case Sensititive)")
         BetString = Console.ReadLine
 
         If BetString < "7" And BetString > "0" Then
@@ -106,50 +111,50 @@
             Dice()
         End If
 
-            A = NumberGen.Next(1, 7)
-            If BetString = "Even" Then
-                BetString = 100
-            End If
+        DoBet()
 
-            If BetString = "Odd" Then
-                BetString = 200
-            End If
-            Console.Clear()
-            If A Mod 2 = 0 Then
-                Console.WriteLine("The dice rolled a {0} which is even!", A)
-                If BetString = 100 Then
-                    Bet = Bet * 2
-                    Money = Money + Bet
-                    Console.WriteLine("You won! You gained {0} credits.", Bet)
-                Else
-                    Console.WriteLine("Oh no, you lost! You lost {0} credits.", Bet)
-                End If
+        A = NumberGen.Next(1, 7)
+        If BetString = "Even" Then
+            BetString = 100
+        End If
+
+        If BetString = "Odd" Then
+            BetString = 200
+        End If
+        Console.Clear()
+        If A Mod 2 = 0 Then
+            Console.WriteLine("The dice rolled a {0} which is even!", A)
+            If BetString = 100 Then
+                Bet = Bet * 2
+                Money = Money + Bet
+                Console.WriteLine("You won! You gained {0} credits.", Bet)
             Else
-                Console.WriteLine("The dice rolled a {0} which is odd!", A)
-                If BetString = 200 Then
-                    Bet = Bet * 2
-                    Money = Money + Bet
-                    Console.WriteLine("You won! You gained {0} credits.", Bet)
-                Else
-                    Console.WriteLine("Oh no, you lost! You lost {0} credits.", Bet)
-                End If
+                Console.WriteLine("Oh no, you lost! You lost {0} credits.", Bet)
             End If
-            If A = BetString Then
-                Bet = Bet * 6
-                Money = Bet + Money
-                Console.WriteLine("Congratulations, you won! You won {0} credits.", Bet)
+        Else
+            Console.WriteLine("The dice rolled a {0} which is odd!", A)
+            If BetString = 200 Then
+                Bet = Bet * 2
+                Money = Money + Bet
+                Console.WriteLine("You won! You gained {0} credits.", Bet)
+            Else
+                Console.WriteLine("Oh no, you lost! You lost {0} credits.", Bet)
             End If
-            Home()
+        End If
+        If A = BetString Then
+            Bet = Bet * 6
+            Money = Bet + Money
+            Console.WriteLine("Congratulations, you won! You won {0} credits.", Bet)
+        End If
+        Home()
     End Sub
     Sub Roulette()
         Dim BetInteger
         Dim InputValid As Boolean = False
-        DoBet()
         Console.Clear()
         Console.WriteLine("What do you want to bet it on, enter any number from 1 to 36 now or alternatively, use Red or Black or Green (Case Sensitive).")
         BetString = Console.ReadLine
         BetInteger = Val(BetString)
-
         If BetInteger < 37 And BetInteger >= 0 Then
             InputValid = True
         ElseIf BetString = "Red" Or BetString = "Black" Or BetString = "Green" Then
@@ -160,6 +165,8 @@
             Invalid()
             Roulette()
         End If
+
+        DoBet()
 
         A = NumberGen.Next(0, 37)
 
@@ -174,6 +181,8 @@
         If BetString = "Green" Then
             BetString = 0
         End If
+
+        BetInteger = Val(BetString)
 
         If A Mod 2 = 0 Then
             Console.Clear()
@@ -300,6 +309,78 @@
                 Home()
             End If
     End Sub
+    Sub SlotMachine()
+        Console.WriteLine("Welcome to Slots!")
+        Console.WriteLine("Each bet will give you three spins.")
+        DoBet()
+        Dim Lines As Integer = 0
+        For Game = 0 To 2
+            A = NumberGen.Next(1, 8)
+            Dim I As Integer = NumberGen.Next(1, 8)
+            Dim F As Integer = NumberGen.Next(1, 8)
+            Dim C As Integer = NumberGen.Next(1, 8)
+            Dim B As Integer = NumberGen.Next(1, 8)
+            Dim H As Integer = NumberGen.Next(1, 8)
+            Dim D As Integer = NumberGen.Next(1, 8)
+            Dim G As Integer = NumberGen.Next(1, 8)
+            Dim E As Integer = NumberGen.Next(1, 8)
+
+            Dim SlotArray() As Integer = {A, B, C, D, E, F, G, H, I}
+            If BadLuckProtectionSlots >= 50 Then
+                A = C
+                E = F
+                H = G
+            End If
+            If BadLuckProtectionSlots >= 100 Then
+                D = E
+                F = E
+            End If
+            DrawSlotTable(B, C, D, E, F, G, H, I)
+
+            If A = B And B = C Then
+                Lines = Lines + 1
+            End If
+            If D = E And E = F Then
+                Lines = Lines + 1
+            End If
+            If G = H And H = I Then
+                Lines = Lines + 1
+            End If
+            Console.WriteLine("You currently have {0} lines.", Lines)
+            Console.WriteLine("Press enter to spin again.")
+            Console.ReadLine()
+        Next
+
+
+        If Lines > 0 Then
+            Console.WriteLine("Congratulations! You got {0} lines.", Lines)
+            Bet = Bet * 2
+            Bet = Bet * Lines
+            Money = Money + Bet
+        Else
+            Console.WriteLine("Oh no, you lost!")
+            BadLuckProtectionSlots = BadLuckProtectionSlots + 15
+        End If
+
+        If Lines = 1 Then
+            BadLuckProtectionSlots = BadLuckProtectionSlots - 5
+        End If
+
+        If Lines = 2 Then
+            BadLuckProtectionSlots = BadLuckProtectionSlots - 10
+        End If
+
+        If Lines = 3 Then
+            BadLuckProtectionSlots = BadLuckProtectionSlots - 20
+        End If
+        Home()
+        Console.ReadLine()
+    End Sub
+    Sub DrawSlotTable(ByVal B, C, D, E, F, G, H, I)
+        Console.WriteLine("| {0} | {1} | {2} |", A, B, C)
+        Console.WriteLine("| {0} | {1} | {2} |", D, E, F)
+        Console.WriteLine("| {0} | {1} | {2} |", G, H, I)
+    End Sub
     Sub DoBet()
         Console.Clear()
         Console.WriteLine("==========================")
@@ -345,23 +426,11 @@
     Public Sub Lose()
         If Money <= 0 Then
             Console.Clear()
-            Dim PlayAgainStr As String
             Console.WriteLine("You currently have {0} credits :(", Money)
             Console.WriteLine("You LOSE!")
-            Console.WriteLine("Do you want to play again?")
-            Console.WriteLine("1. Yes")
-            Console.WriteLine("2. No")
-            PlayAgainStr = Console.ReadLine()
-            Select Case PlayAgainStr
-                Case 1
-                    Money = 10000
-                    Main()
-                Case 2
-                    End
-                Case Else
-                    Console.WriteLine("That is not a valid input, try again.")
-            End Select
+            Console.WriteLine("Press enter to quit now. Thanks for playing!")
             Console.ReadLine()
+            Environment.Exit(0)
         End If
     End Sub
     Sub Invalid()
