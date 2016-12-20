@@ -1,6 +1,4 @@
-﻿Imports System.Text.RegularExpressions
-
-Module Module1
+﻿Module Module1
     Public Money As Integer = 10000
     Public UserInput As String
     Public Bet As Integer = 0
