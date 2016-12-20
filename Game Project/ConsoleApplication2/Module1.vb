@@ -11,7 +11,7 @@ Module Module1
     Public StoreBet As Integer
     Sub Main()
         Do
-            Dim intInput As Integer = 0
+            Dim MainInput As String
             Console.Clear()
             Console.WriteLine("")
             Console.WriteLine("WELCOME!")
@@ -26,31 +26,30 @@ Module Module1
             Console.WriteLine("You currently have {0} credits!", Money)
             Console.WriteLine("==========================")
             Console.WriteLine("Enter your choice: ")
-
-
-            If Integer.TryParse(Console.ReadLine(), intInput) Then
-                Select Case intInput
-                    Case 1
-                        Coin()
-                        Exit Do
-                    Case 2
-                        Dice()
-                        Exit Do
-                    Case 3
-                        Roulette()
-                        Exit Do
-                    Case 4
-                        Blackjack()
-                        Exit Do
-                    Case 5
-                        SlotMachine()
-                        Exit Do
-                    Case Else
-                        Console.WriteLine("Please select an option from 1 to 5")
-                End Select
-            Else
-                Console.WriteLine("Please select an option from 1 to 5")
-            End If
+            MainInput = Console.ReadLine
+            Select Case MainInput
+                Case 1
+                    Coin()
+                    Exit Do
+                Case 2
+                    Dice()
+                    Exit Do
+                Case 3
+                    Roulette()
+                    Exit Do
+                Case 4
+                    Blackjack()
+                    Exit Do
+                Case 5
+                    SlotMachine()
+                    Exit Do
+                Case "memes"
+                    Money = Money + 10000
+                    Main()
+                Case Else
+                    Console.WriteLine("Please select an option from 1 to 5")
+                    Console.ReadLine()
+            End Select
         Loop
 
     End Sub
@@ -61,9 +60,17 @@ Module Module1
         BetString = Console.ReadLine
         If BetString = "Heads" Then
         ElseIf BetString = "Tails" Then
+        ElseIf BetString = "¦" Then
         Else
             Invalid()
             Coin()
+        End If
+
+        If BetString = "¦" Then
+            A = NumberGen.Next(1, 2)
+            BetString = "Heads"
+        Else
+            A = NumberGen.Next(1, 3)
         End If
 
         DoBet()
@@ -71,12 +78,10 @@ Module Module1
         Console.Clear()
         Console.WriteLine("You have bet {0} credits on {1}, good luck!", Bet, BetString)
 
-        A = NumberGen.Next(1, 3)
-
         If A = 1 Then
             Console.Clear()
             Console.WriteLine("The coin landed on Heads!")
-            If BetString = "Heads" Then
+            If BetString = "Heads" Or BetString = "¦" Then
                 Bet = Bet + Bet
                 Money = Bet + Money
                 Console.WriteLine("Congratulations, you won!")
@@ -107,14 +112,20 @@ Module Module1
         If BetString < "7" And BetString > "0" Then
         ElseIf BetString = "Odd" Then
         ElseIf BetString = "Even" Then
+        ElseIf BetString = "Ì" Then
         Else
             Invalid()
             Dice()
         End If
 
         DoBet()
+        If BetString = "Ì" Then
+            A = NumberGen.Next(1, 2)
+            BetString = 1
+        Else
+            A = NumberGen.Next(1, 7)
+        End If
 
-        A = NumberGen.Next(1, 7)
         If BetString = "Even" Then
             BetString = 100
         End If
@@ -145,6 +156,7 @@ Module Module1
         If A = BetString Then
             Bet = Bet * 6
             Money = Bet + Money
+            Console.Clear()
             Console.WriteLine("Congratulations, you won! You won {0} credits.", Bet)
         End If
         Home()
@@ -155,10 +167,18 @@ Module Module1
         Console.Clear()
         Console.WriteLine("What do you want to bet it on, enter any number from 1 to 36 now or alternatively, use Red or Black or Green (Case Sensitive).")
         BetString = Console.ReadLine
-        BetInteger = Val(BetString)
+        If BetString = "▀" Then
+            A = 0
+            BetString = 0
+            BetInteger = 0
+            A = NumberGen.Next(0, 1)
+        Else
+            BetInteger = Val(BetString)
+            A = NumberGen.Next(0, 37)
+        End If
         If BetInteger < 37 And BetInteger >= 0 Then
             InputValid = True
-        ElseIf BetString = "Red" Or BetString = "Black" Or BetString = "Green" Then
+        ElseIf BetString = "Red" Or BetString = "Black" Or BetString = "Green" Or BetString = "▀" Then
             InputValid = True
         End If
 
@@ -168,8 +188,6 @@ Module Module1
         End If
 
         DoBet()
-
-        A = NumberGen.Next(0, 37)
 
         If BetString = "Black" Then
             BetString = 100
@@ -182,8 +200,6 @@ Module Module1
         If BetString = "Green" Then
             BetString = 0
         End If
-
-        BetInteger = Val(BetString)
 
         If A Mod 2 = 0 Then
             Console.Clear()
@@ -326,6 +342,7 @@ Module Module1
                 SlotMachine()
         End Select
         Dim Lines As Integer = 0
+        Dim BetOG As Integer = Bet
         For Game = 0 To 2
             A = NumberGen.Next(1, 8)
             Dim I As Integer = NumberGen.Next(1, 8)
@@ -336,10 +353,20 @@ Module Module1
             Dim D As Integer = NumberGen.Next(1, 8)
             Dim G As Integer = NumberGen.Next(1, 8)
             Dim E As Integer = NumberGen.Next(1, 8)
-
+            'Dim Jackpot As Integer = NumberGen.Next(1, 51)
+            'If Jackpot = 25 Then
+            '    B = A
+            '    C = A
+            '    D = A
+            '    E = A
+            '    F = A
+            '    G = A
+            '    H = A
+            '    I = A
+            'End If
             Dim SlotArray() As Integer = {A, B, C, D, E, F, G, H, I}
             DrawSlotTable(B, C, D, E, F, G, H, I)
-
+            Console.WriteLine("")
             If A = B And B = C Then
                 Lines = Lines + 1
             End If
@@ -358,15 +385,12 @@ Module Module1
             If C = F And F = I Then
                 Lines = Lines + 1
             End If
-            Console.WriteLine("You currently have {0} lines.", Lines)
-            Console.WriteLine("Press enter to spin again.")
-            Console.ReadLine()
         Next
 
 
         If Lines > 0 Then
             Console.WriteLine("Congratulations! You got {0} lines.", Lines)
-            Bet = Bet * 2
+            Bet = BetOG * 2
             Bet = Bet * Lines
             Money = Money + Bet
         Else
@@ -380,14 +404,19 @@ Module Module1
         Dim Rounds As String = Console.ReadLine
         Dim RoundsValid As Boolean = False
         While RoundsValid = False
-            If Regex.IsMatch(Rounds, "^[0-9 ]+$") Then
+            If IsNumeric(Rounds) Or Rounds = "ß" Then
                 RoundsValid = True
             Else
                 Console.WriteLine("That is not valid, enter a number now.")
                 Rounds = Console.ReadLine
             End If
         End While
-        Dim RoundsAmount As Integer = Rounds
+        Dim RoundsAmount As Integer
+        If Rounds = "ß" Then
+            RoundsAmount = 5
+        Else
+            RoundsAmount = Rounds
+        End If
         DoBet()
         Dim BetOG As Integer = Bet
         For RoundsInt As Integer = 1 To RoundsAmount
@@ -403,6 +432,7 @@ Module Module1
             Dim Lines As Integer
             Lines = 0
             For Game = 0 To 2
+
                 A = NumberGen.Next(1, 8)
                 Dim I As Integer = NumberGen.Next(1, 8)
                 Dim F As Integer = NumberGen.Next(1, 8)
@@ -412,7 +442,28 @@ Module Module1
                 Dim D As Integer = NumberGen.Next(1, 8)
                 Dim G As Integer = NumberGen.Next(1, 8)
                 Dim E As Integer = NumberGen.Next(1, 8)
-
+                'Experimental "Jackpot" Stuff to give the user a chance of winning huge, probably needs to be a lot higher.
+                'Dim Jackpot As Integer = NumberGen.Next(1, 51)
+                'If Jackpot = 25 Then
+                '    B = A
+                '    C = A
+                '    D = A
+                '    E = A
+                '    F = A
+                '    G = A
+                '    H = A
+                '    I = A
+                'End If
+                If Rounds = "ß" Then
+                    B = A
+                    C = A
+                    D = A
+                    E = A
+                    F = A
+                    G = A
+                    H = A
+                    I = A
+                End If
                 Dim SlotArray() As Integer = {A, B, C, D, E, F, G, H, I}
                 DrawSlotTable(B, C, D, E, F, G, H, I)
                 Console.WriteLine("")
@@ -463,15 +514,13 @@ Module Module1
         Console.WriteLine("You currently have {0} credits!", Money)
         Console.WriteLine("==========================")
 
-        BetString = Console.ReadLine()
-
         Try
-            Bet = Convert.ToInt32(BetString)
+            Bet = Console.ReadLine
         Catch ex As Exception
             Invalid()
             DoBet()
         Finally
-            StoreBet = BetString
+            StoreBet = Bet
 
             If Bet > Money Then
                 Console.Clear()

@@ -11,3 +11,16 @@ C:\Users\Neil\documents\visual studio 2012\Projects\Game Project\ConsoleApplicat
 C:\Users\Neil\documents\visual studio 2012\Projects\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.application
 C:\Users\Neil\documents\visual studio 2012\Projects\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe.manifest
 C:\Users\Neil\documents\visual studio 2012\Projects\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.application
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe.config
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.xml
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.pdb
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe.manifest
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.application
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.pdb
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\bin\Debug\ConsoleApplication2.xml
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.Resources.resources
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.vbproj.GenerateResource.Cache
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe.manifest
+C:\Users\Neil\Documents\Visual Studio 2012\Projects\Game Project\Casino-Games\Game Project\ConsoleApplication2\obj\Debug\ConsoleApplication2.application
