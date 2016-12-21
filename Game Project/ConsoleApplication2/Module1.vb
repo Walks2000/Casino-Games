@@ -351,17 +351,18 @@
             Dim D As Integer = NumberGen.Next(1, 8)
             Dim G As Integer = NumberGen.Next(1, 8)
             Dim E As Integer = NumberGen.Next(1, 8)
-            'Dim Jackpot As Integer = NumberGen.Next(1, 51)
-            'If Jackpot = 25 Then
-            '    B = A
-            '    C = A
-            '    D = A
-            '    E = A
-            '    F = A
-            '    G = A
-            '    H = A
-            '    I = A
-            'End If
+            'Experimental "Jackpot" Stuff to give the user a chance of winning huge, probably needs to be a lot higher.
+            Dim Jackpot As Integer = NumberGen.Next(1, 141)
+            If Jackpot = 70 Then
+                B = A
+                C = A
+                D = A
+                E = A
+                F = A
+                G = A
+                H = A
+                I = A
+            End If
             Dim SlotArray() As Integer = {A, B, C, D, E, F, G, H, I}
             DrawSlotTable(B, C, D, E, F, G, H, I)
             Console.WriteLine("")
@@ -441,17 +442,17 @@
                 Dim G As Integer = NumberGen.Next(1, 8)
                 Dim E As Integer = NumberGen.Next(1, 8)
                 'Experimental "Jackpot" Stuff to give the user a chance of winning huge, probably needs to be a lot higher.
-                'Dim Jackpot As Integer = NumberGen.Next(1, 51)
-                'If Jackpot = 25 Then
-                '    B = A
-                '    C = A
-                '    D = A
-                '    E = A
-                '    F = A
-                '    G = A
-                '    H = A
-                '    I = A
-                'End If
+                Dim Jackpot As Integer = NumberGen.Next(1, 141)
+                If Jackpot = 70 Then
+                    B = A
+                    C = A
+                    D = A
+                    E = A
+                    F = A
+                    G = A
+                    H = A
+                    I = A
+                End If
                 If Rounds = "ß" Then
                     B = A
                     C = A
