@@ -11,6 +11,7 @@
         Do
             Dim MainInput As String
             Console.Clear()
+            Console.Title = "Casino Games"
             Console.WriteLine("")
             Console.WriteLine("WELCOME!")
             Console.WriteLine("==========================")
@@ -54,6 +55,7 @@
 
     Sub Coin()
         Console.Clear()
+        Console.Title = "Coin Flip"
         Console.WriteLine("What do you want to bet it on, Heads or Tails (enter one of the two now)")
         BetString = Console.ReadLine
         If BetString = "Heads" Then
@@ -104,6 +106,7 @@
     End Sub
     Sub Dice()
         Console.Clear()
+        Console.Title = "Dice Roll"
         Console.WriteLine("What do you want to bet it on, enter any number between 1 and 6 or Odd or Even (Case Sensititive)")
         BetString = Console.ReadLine
 
@@ -163,6 +166,7 @@
         Dim BetInteger
         Dim InputValid As Boolean = False
         Console.Clear()
+        Console.Title = "Roulette"
         Console.WriteLine("What do you want to bet it on, enter any number from 1 to 36 now or alternatively, use Red or Black or Green (Case Sensitive).")
         BetString = Console.ReadLine
         If BetString = "▀" Then
@@ -237,6 +241,7 @@
     End Sub
     Sub Blackjack()
         Console.Clear()
+        Console.Title = "Blackjack"
         Console.WriteLine("Welcome to Blackjack!")
         DoBet()
         A = NumberGen.Next(1, 12) + NumberGen.Next(1, 12)
@@ -326,6 +331,7 @@
     End Sub
     Sub SlotMachine()
         Console.Clear()
+        Console.Title = "Slot Machine"
         Console.WriteLine("Welcome to Slots!")
         Console.WriteLine("Each bet will give you three spins.")
         Console.WriteLine("Do you want to use an autobet feature?" & vbCrLf & "1. Yes" & vbCrLf & "2. No")
@@ -367,7 +373,7 @@
             DrawSlotTable(B, C, D, E, F, G, H, I)
             Console.WriteLine("")
             If A = B And B = C Then
-                Lines = Lines + 1
+                Lines = Lines + 16
             End If
             If D = E And E = F Then
                 Lines = Lines + 1
@@ -399,6 +405,8 @@
         Console.ReadLine()
     End Sub
     Sub AutoSlotMachine()
+        Console.Clear()
+        Console.Title = "Automatic Slot Machine"
         Console.WriteLine("How many rounds do you want to play?")
         Dim Rounds As String = Console.ReadLine
         Dim RoundsValid As Boolean = False
