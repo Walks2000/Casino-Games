@@ -410,8 +410,12 @@
         Console.WriteLine("How many rounds do you want to play?")
         Dim Rounds As String = Console.ReadLine
         Dim RoundsValid As Boolean = False
+        Dim RoundsFinished As Boolean = False
+        Dim Wins As Integer = 0
+        Dim Jackpots As Integer = 0
+        Dim RoundsTotal As Integer
         While RoundsValid = False
-            If IsNumeric(Rounds) Or Rounds = "ß" Then
+            If IsNumeric(Rounds) Or Rounds = "ß" Or Rounds = "ë" Then
                 RoundsValid = True
             Else
                 Console.WriteLine("That is not valid, enter a number now.")
@@ -421,21 +425,38 @@
         Dim RoundsAmount As Integer
         If Rounds = "ß" Then
             RoundsAmount = 5
+        ElseIf Rounds = "ë" Then
+            RoundsAmount = 100
         Else
             RoundsAmount = Rounds
         End If
         DoBet()
         Dim BetOG As Integer = Bet
+        Console.Clear()
+        Console.WriteLine("Your spins are now being simulated as fast as possible, please wait.")
         For RoundsInt As Integer = 1 To RoundsAmount
+            RoundsTotal = RoundsInt
+            'Do Until RoundsFinished = True
+            '    While RoundsFinished = False
+            '        Console.Clear()
+            '    End While
+            '    If RoundsAmount = RoundsInt Then
+            '    ElseIf Money = 0 Then
+            '        RoundsFinished = True
+            '    End If
+            '    If BetOG > Money Then
+            '        RoundsFinished = True
+            '    End If
+            'Loop
             If RoundsInt > 1 Then
                 If Money - BetOG < 0 Then
-                    Home()
+                    Exit For
                 Else
 
                     Money = Money - BetOG
                 End If
             End If
-            Console.WriteLine("Round {0}", RoundsInt)
+            'Console.WriteLine("Round {0}", RoundsInt)
             Dim Lines As Integer
             Lines = 0
             For Game = 0 To 2
@@ -450,8 +471,8 @@
                 Dim G As Integer = NumberGen.Next(1, 8)
                 Dim E As Integer = NumberGen.Next(1, 8)
                 'Experimental "Jackpot" Stuff to give the user a chance of winning huge, probably needs to be a lot higher.
-                Dim Jackpot As Integer = NumberGen.Next(1, 141)
-                If Jackpot = 70 Then
+                Dim Jackpot As Integer = NumberGen.Next(1, 101)
+                If Jackpot = 50 Then
                     B = A
                     C = A
                     D = A
@@ -460,8 +481,9 @@
                     G = A
                     H = A
                     I = A
+                    Jackpots = Jackpots + 1
                 End If
-                If Rounds = "ß" Then
+                If Rounds = "ß" Or Rounds = "ë" Then
                     B = A
                     C = A
                     D = A
@@ -470,10 +492,11 @@
                     G = A
                     H = A
                     I = A
+                    Jackpots = Jackpots + 1
                 End If
                 Dim SlotArray() As Integer = {A, B, C, D, E, F, G, H, I}
-                DrawSlotTable(B, C, D, E, F, G, H, I)
-                Console.WriteLine("")
+                'DrawSlotTable(B, C, D, E, F, G, H, I)
+                'Console.WriteLine("")
                 If A = B And B = C Then
                     Lines = Lines + 1
                 End If
@@ -496,15 +519,17 @@
 
 
             If Lines > 0 Then
-                Console.WriteLine("Congratulations! You got {0} lines.", Lines)
+                'Console.WriteLine("Congratulations! You got {0} lines.", Lines)
                 Bet = BetOG * 2
                 Bet = Bet * Lines
                 Money = Money + Bet
-            Else
-                Console.WriteLine("Oh no, you lost!")
+                Wins = Wins + 1
+                'Else
+                '    Console.WriteLine("Oh no, you lost!")
             End If
         Next
-
+        Console.Clear()
+        Console.WriteLine("The spins are done! You won on {0} spins out of {1} with {2} jackpots!", Wins, RoundsTotal, Jackpots)
         Home()
         Console.ReadLine()
     End Sub
@@ -534,11 +559,14 @@
                 Console.WriteLine("You can not bet more than you have, please press enter to retry.")
                 Console.ReadLine()
                 DoBet()
+            ElseIf Bet < 0 Then
+                Console.Clear()
+                Console.WriteLine("You can not bet less than 0, please press enter to retry.")
+                Console.ReadLine()
+                DoBet()
             Else
                 Money = Money - Bet
             End If
-
-
         End Try
 
 
@@ -566,6 +594,6 @@
     Sub Invalid()
         Console.WriteLine("That is not a valid input, press enter to return to the start.")
         Console.ReadLine()
-        Money = Money + StoreBet
+        'Money = Money + StoreBet
     End Sub
 End Module
