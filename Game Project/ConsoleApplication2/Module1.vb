@@ -240,9 +240,19 @@
         Home()
     End Sub
     Sub Blackjack()
+        Dim UseAuto As String
         Console.Clear()
         Console.Title = "Blackjack"
         Console.WriteLine("Welcome to Blackjack!")
+        Console.WriteLine("Do you want to use the auto-bet feature? Y/N")
+        UseAuto = Console.ReadLine
+        If UseAuto = "Y" Then
+            AutoBlackjack()
+        ElseIf UseAuto = "N" Then
+        Else
+            Invalid()
+            Blackjack()
+        End If
         DoBet()
         A = NumberGen.Next(1, 12) + NumberGen.Next(1, 12)
         If A = 22 Then
@@ -471,8 +481,8 @@
                 Dim G As Integer = NumberGen.Next(1, 8)
                 Dim E As Integer = NumberGen.Next(1, 8)
                 'Experimental "Jackpot" Stuff to give the user a chance of winning huge, probably needs to be a lot higher.
-                Dim Jackpot As Integer = NumberGen.Next(1, 101)
-                If Jackpot = 50 Then
+                Dim Jackpot As Integer = NumberGen.Next(1, 131)
+                If Jackpot = 65 Then
                     B = A
                     C = A
                     D = A
@@ -595,5 +605,178 @@
         Console.WriteLine("That is not a valid input, press enter to return to the start.")
         Console.ReadLine()
         'Money = Money + StoreBet
+    End Sub
+    Sub AutoBlackjack()
+        Dim PlayerStand As Integer = 16
+        Dim PlayerChange As Boolean = False
+        Dim PlayerInput As String
+        Dim Rounds As String
+        Dim RoundsInt As Integer
+        Dim RoundsTotal As Integer
+        Dim Wins As Integer
+        Dim Blackjacks As Integer
+        Dim Draws As Integer
+        Dim BetOG As Integer
+        Console.Clear()
+        Console.Title = "Automatic Blackjack"
+        Console.WriteLine("Welcome to Automatic Blackjack!")
+        Console.WriteLine("In this version an AI will play for you, which will always stand above a threshold you set.")
+        Console.WriteLine("The current value for the threshold of standing is: {0}", PlayerStand)
+        Console.WriteLine("Would you like to change that? Y/N")
+        PlayerInput = Console.ReadLine.ToUpper
+        Select Case PlayerInput
+            Case "Y"
+                Console.Clear()
+                Console.WriteLine("What would you like the value to be?")
+                PlayerStand = Console.ReadLine
+                If PlayerStand > 0 And PlayerStand < 22 Then
+                    Console.WriteLine("The input of {0} is valid! Good luck!")
+                    Console.ReadLine()
+                Else
+                    Console.WriteLine("That is not a vaild input, start again.")
+                    Console.ReadLine()
+                    AutoBlackjack()
+                End If
+            Case "N"
+                Console.Clear()
+                Console.WriteLine("The lowest stand will be set as {0}, good luck!", PlayerStand)
+                Console.ReadLine()
+            Case Else
+                Console.Clear()
+                Console.WriteLine("Sorry, that is not a valid input. Try again!")
+                Console.ReadLine()
+                AutoBlackjack()
+        End Select
+        Console.WriteLine("How many rounds do you want to play?")
+        Rounds = Console.ReadLine
+        If IsNumeric(Rounds) Then
+            RoundsInt = Convert.ToInt32(Rounds)
+        Else
+            Invalid()
+            AutoBlackjack()
+        End If
+        DoBet()
+        BetOG = Bet
+        'Add loop for games
+        Console.WriteLine("Your games are now being simulated as fast as possible, please wait.")
+        For RoundsAmount = 0 To RoundsInt
+            Bet = BetOG
+            If RoundsAmount > 1 Then
+                If Money - BetOG < 0 Then
+                    Exit For
+                Else
+                    Money = Money - BetOG
+                End If
+            End If
+            RoundsTotal = RoundsTotal + 1
+            A = NumberGen.Next(1, 12) + NumberGen.Next(1, 12)
+            If A = 22 Then
+                A = 12
+            End If
+
+            'Console.WriteLine("You have been dealt {0}, would you like to hit? Y or N.", A)
+            'BetString = Console.ReadLine
+
+            'If BetString = "Y" Then
+            'ElseIf BetString = "N" Then
+            'Else
+            '    Invalid()
+            '    Blackjack()
+            'End If
+
+            If A >= PlayerStand Then
+                BetString = "N"
+            Else
+                BetString = "Y"
+            End If
+
+            If BetString = "Y" Then
+                If A < 22 Then
+                    While BetString = "Y"
+                        A = A + NumberGen.Next(1, 11)
+                        If A > 21 Then
+                            'Console.WriteLine("Oh no, you bust on {0}! Better luck next time.", A)
+                            'Home()
+                        End If
+                        If A >= PlayerStand Then
+                            BetString = "N"
+                        Else
+                            BetString = "Y"
+                        End If
+                        'Console.WriteLine("You now have a total of {0}, would you like to hit? Y or N.", A)
+                        'BetString = Console.ReadLine()
+                    End While
+                End If
+                If A > 21 Then
+                    'Console.WriteLine("Oh no, you bust on {0}! Better luck next time.", A)
+                    'Home()
+                End If
+
+                If A = 21 Then
+                    Bet = Bet * 3
+                    Money = Bet + Money
+                    Wins = Wins + 1
+                    Blackjacks = Blackjacks + 1
+                    'Console.WriteLine("Congratulations, you got Blackjack winning you a total of {0}!", Bet)
+                    'Home()
+                End If
+            End If
+
+            If BetString = "N" Then
+                'Console.WriteLine("You have stood on {0}, good luck!", A)
+                Dealer = NumberGen.Next(1, 12) + NumberGen.Next(1, 12)
+                If Dealer = 22 Then
+                    Dealer = 12
+                End If
+                'Console.WriteLine("The dealer has {0}, press enter to continue.", Dealer)
+                'Console.ReadLine()
+                While Dealer < 17
+                    Dealer = Dealer + NumberGen.Next(1, 12)
+                    'Console.WriteLine("The dealer now has {0}, press enter to continue.", Dealer)
+                    'Console.ReadLine()
+                End While
+                If Dealer > 16 Then
+                    'Console.WriteLine("The dealer has stood on {0}!", Dealer)
+                    If A > Dealer And A < 21 Then
+                        'Console.WriteLine("Congratulations, you beat the dealer!")
+                        Bet = Bet + Bet
+                        Console.WriteLine("{0} {1}", Money, Bet)
+                        Money = Bet + Money
+                        Wins = Wins + 1
+                        'Console.WriteLine("You have won {0} credits!", Bet)
+                        'Home()
+                    End If
+
+                    If Dealer > 21 Then
+                        'Console.WriteLine("Congratulations, you beat the dealer!")
+                        Bet = Bet + Bet
+                        Money = Bet + Money
+                        Wins = Wins + 1
+                        'Console.WriteLine("You have won {0} credits!", Bet)
+                        'Home()
+                    End If
+
+                    If A < Dealer Then
+                        'Console.WriteLine("Oh no, you have lost! You lost {0} credits.", Bet)
+                        'Home()
+                    End If
+
+                    If A = Dealer Then
+                        'Console.WriteLine("You and the dealer got the same amount! You got {0} credits back.", Bet)
+                        Money = Bet + Money
+                        Draws = Draws + 1
+                        'Home()
+                    End If
+                End If
+            End If
+            'If A > 21 Then
+            '    'Console.WriteLine("Oh no, you bust! Better luck next time.")
+            '    Home()
+            'End If
+        Next
+        Console.Clear()
+        Console.WriteLine("The games are done! You won/drew in {0} games out of {1} with {2} blackjacks and {3} draws!", Wins + Draws, RoundsTotal, Blackjacks, Draws)
+        Home()
+        Console.ReadLine()
     End Sub
 End Module
